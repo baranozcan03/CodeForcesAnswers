@@ -11,11 +11,11 @@ int main() {
     while(colT){
         std::cin>> newcol;
         colT--;
-        columns.push_back(newcol);
+        columns.push_back(newcol); //put all columns that are given into a vector
     }
-    sort(columns.begin(),columns.end());
+    sort(columns.begin(),columns.end()); //sotring in ascending order is equvelent to switcihng gravity.
     for(auto c : columns) {
-        std::cout << c << " ";
+        std::cout << c << " ";//print things out
     }
 
 
