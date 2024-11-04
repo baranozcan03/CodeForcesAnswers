@@ -2,39 +2,35 @@
 #include <vector>
 #include <sstream>
 
+
+//undertand how clearing the flag in cin works please...
+
 int main() {
     int vecNum;
     std::vector<int> forces{0,0,0};
     std::string vector;
     std::cin >> vecNum;
+    std::cin.ignore();  // Clear newline from input buffer
     bool neg=false;
 
-    while(vecNum+1) {
+    while(vecNum) {
         vecNum--;
         int count = 0;
         int lastempt=0;
         std::getline(std::cin, vector);
-        for(int i = 0 ; i < vector.size(); i++) {
-            if (vector[i] = ' ') {
-                std::string wtf = vector.substr(lastempt,i-lastempt);
-                std::cout << wtf << std::endl;
-                forces[count] = std::stoi("5");
-                int lastempt = i;  
-                count++;
-            }
-        }
-        std::cout << forces[0] << " " << forces[1] << " " << forces[2] << "\n";
+        std::string delimiter = " ";
+        forces[0] += stoi(vector.substr(0, vector.find(delimiter)));
+        vector.erase(0, vector.find(delimiter) + delimiter.length());
+        forces[1] += stoi(vector.substr(0, vector.find(delimiter)));
+        vector.erase(0, vector.find(delimiter) + delimiter.length());
+        forces[2] += stoi(vector.substr(0, vector.find(delimiter)));
     }
-    bool equ = true;
-    for(int i : forces) {
-        std::cout << i;
-        if(i != 0 && equ) {
-            std::cout << "NO";
-            equ = false;
-        }
+    
+    if (forces[0] == 0 && forces[1] == 0 && forces[2] == 0) {
+        std::cout << "YES\n";
+    } else {
+        std::cout << "NO\n";
     }
-    if(equ) std::cout <<"YES";
-
 
     return 0;
 }
